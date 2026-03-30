@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorkBuddy - 更适合普通人的国产AI桌面助手</title>
+    <meta name="description" content="WorkBuddy - 腾讯推出的国产AI桌面助手，自然语言驱动，零代码自动化。微信/飞书联动，本地执行，数据安全。免费下载，5分钟快速上手。">
+    <meta name="keywords" content="WorkBuddy, AI助手, 桌面自动化, 自然语言, 零代码, AI办公, 智能助手, 腾讯AI, 人工智能">
+    <meta name="author" content="WorkBuddy Team">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="WorkBuddy - 更适合普通人的国产AI桌面助手">
+    <meta property="og:description" content="微信一句话就能真干活！自然语言驱动，零代码自动化，本地执行，数据安全。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://workbuddycn.com">
+    <meta property="og:image" content="https://workbuddycn.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WorkBuddy - 更适合普通人的国产AI桌面助手">
+    <meta name="twitter:description" content="微信一句话就能真干活！自然语言驱动，零代码自动化。">
+    <link rel="canonical" href="https://workbuddycn.com">
+    <title>WorkBuddy - 更适合普通人的国产AI桌面助手 | 零代码自动化</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -44,6 +57,134 @@
             0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
             50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
         }
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .rotate-hover:hover {
+            animation: rotate360 0.6s ease-out;
+        }
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .shake-hover:hover {
+            animation: shake 0.5s ease-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .bounce-hover:hover {
+            animation: bounce 0.5s ease-out;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s ease infinite;
+        }
+        @keyframes gradientText {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        .wave-animation {
+            animation: wave 2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            75% { transform: translateY(5px); }
+        }
+        .progress-bar {
+            animation: progress 2s ease-out forwards;
+        }
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        .counter {
+            animation: countUp 2s ease-out forwards;
+        }
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: floatParticle 6s ease-in-out infinite;
+        }
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.1; }
+        }
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform 0.5s, opacity 1s;
+        }
+        .ripple:active::after {
+            transform: scale(0, 0);
+            opacity: 0.3;
+            transition: 0s;
+        }
+        .text-shadow-glow {
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.5), 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+            transition: transform 0.5s;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen">
@@ -63,54 +204,77 @@
                     <a href="#comparison" class="hover:text-purple-400 transition">产品对比</a>
                     <a href="#faq" class="hover:text-purple-400 transition">常见问题</a>
                 </div>
-                <button class="gradient-bg px-6 py-2 rounded-full font-medium hover:opacity-90 transition">
-                    立即体验
-                </button>
+                <div class="flex items-center space-x-4">
+                    <button class="gradient-bg px-6 py-2 rounded-full font-medium hover:opacity-90 transition hidden sm:block">
+                        立即体验
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-2xl">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#features" class="hover:text-purple-400 transition">核心功能</a>
+                    <a href="#demo" class="hover:text-purple-400 transition">使用演示</a>
+                    <a href="#comparison" class="hover:text-purple-400 transition">产品对比</a>
+                    <a href="#faq" class="hover:text-purple-400 transition">常见问题</a>
+                    <a href="#contact" class="hover:text-purple-400 transition">联系我们</a>
+                    <hr class="border-gray-700">
+                    <button class="gradient-bg px-6 py-2 rounded-full font-medium hover:opacity-90 transition">
+                        立即体验
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg min-h-screen flex items-center justify-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 py-20">
+    <section class="gradient-bg min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <!-- 粒子背景 -->
+        <div id="particles" class="absolute inset-0 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
-                    <div class="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-4">
+                <div class="space-y-8 slide-in-left">
+                    <div class="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-4 scale-in wave-animation">
                         🚀 腾讯推出，更适合普通人的国产AI
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6 fade-in-up">
                         微信一句话<br>
-                        <span class="text-transparent bg-clip-text gradient-bg">就能真干活！</span>
+                        <span class="gradient-text">就能真干活！</span>
                     </h1>
-                    <p class="text-xl text-gray-200 mb-8 leading-relaxed">
+                    <p class="text-xl text-gray-200 mb-8 leading-relaxed fade-in-up" style="animation-delay: 0.2s">
                         不懂编程？没关系！不需要复杂配置，无需技术背景。<br>
                         自然语言指令，解放双手，让AI替你上班。
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="gradient-bg px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition pulse-glow">
+                    <div class="flex flex-wrap gap-4 fade-in-up" style="animation-delay: 0.4s">
+                        <button class="gradient-bg px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition pulse-glow ripple">
                             免费下载
                         </button>
-                        <button class="bg-white/10 backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition">
+                        <button class="bg-white/10 backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition shake-hover">
                             观看演示
                         </button>
                     </div>
-                    <div class="flex items-center space-x-6 pt-6">
+                    <div class="flex items-center space-x-6 pt-6 fade-in-up" style="animation-delay: 0.6s">
                         <div class="flex items-center">
-                            <span class="text-3xl font-bold text-yellow-400">37.3万+</span>
+                            <span class="text-3xl font-bold text-yellow-400 counter" data-target="373000">0</span>
                             <span class="ml-2 text-gray-300">粉丝关注</span>
                         </div>
                         <div class="w-px h-8 bg-white/20"></div>
                         <div class="flex items-center">
-                            <span class="text-3xl font-bold text-green-400">1690+</span>
+                            <span class="text-3xl font-bold text-green-400 counter" data-target="1690">0</span>
                             <span class="ml-2 text-gray-300">播放点赞</span>
                         </div>
                     </div>
                 </div>
-                <div class="relative float-animation">
+                <div class="relative float-animation slide-in-right card-3d">
                     <div class="glass-effect rounded-3xl p-8 space-y-6">
                         <div class="bg-black/30 rounded-xl p-6">
                             <div class="flex items-center space-x-3 mb-4">
-                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center bounce-hover">
                                     <span class="text-2xl">💬</span>
                                 </div>
                                 <div>
@@ -119,16 +283,19 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center bounce-hover" style="animation-delay: 0.2s">
                                     <span class="text-2xl">🤖</span>
                                 </div>
                                 <div>
                                     <div class="text-sm text-gray-400">AI自动执行</div>
                                     <div class="text-green-400">✅ 已找到327个文件，正在分类归档...</div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                                        <div class="bg-green-500 h-2 rounded-full progress-bar"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 flex items-center justify-center bounce-hover" style="animation-delay: 0.4s">
                                     <span class="text-2xl">📁</span>
                                 </div>
                                 <div>
@@ -157,8 +324,8 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">💬</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">自然语言驱动</h3>
@@ -167,8 +334,8 @@
                     </p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">🖥️</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">本地执行，数据安全</h3>
@@ -177,8 +344,8 @@
                     </p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-6">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">🔌</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">OpenClaw生态兼容</h3>
@@ -187,8 +354,8 @@
                     </p>
                 </div>
                 <!-- Feature 4 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-6">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">📊</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">多Agent并行工作</h3>
@@ -197,8 +364,8 @@
                     </p>
                 </div>
                 <!-- Feature 5 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center mb-6">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">📱</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">微信/飞书联动</h3>
@@ -207,8 +374,8 @@
                     </p>
                 </div>
                 <!-- Feature 6 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">⚡</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-3">零代码自动化</h3>
@@ -537,47 +704,496 @@
         </div>
     </footer>
 
+    <!-- Language Data -->
     <script>
+        const translations = {
+            zh: {
+                nav: {
+                    features: '核心功能',
+                    demo: '使用演示',
+                    comparison: '产品对比',
+                    faq: '常见问题',
+                    contact: '联系我们',
+                    experience: '立即体验'
+                },
+                hero: {
+                    badge: '🚀 腾讯推出，更适合普通人的国产AI',
+                    title: '微信一句话',
+                    subtitle: '就能真干活！',
+                    description: '不懂编程？没关系！不需要复杂配置，无需技术背景。<br>自然语言指令，解放双手，让AI替你上班。',
+                    download: '免费下载',
+                    watch: '观看演示',
+                    followers: '粉丝关注',
+                    likes: '播放点赞',
+                    demoTip: '真实使用演示，仅需3秒完成任务'
+                },
+                features: {
+                    title: '为什么选择 WorkBuddy？',
+                    subtitle: '不止是聊天工具，而是你的数字同事，真正能替你干活！',
+                    natural: {
+                        title: '自然语言驱动',
+                        desc: '不需要学习命令，不需要编程。就像和人聊天一样，用日常语言告诉AI你想做什么，它就自动执行。'
+                    },
+                    security: {
+                        title: '本地执行，数据安全',
+                        desc: '所有任务在本地电脑执行，数据不出境。无需上传云端，隐私安全有保障。'
+                    },
+                    ecosystem: {
+                        title: 'OpenClaw生态兼容',
+                        desc: '完全兼容OpenClaw技能生态，支持桌面控制、文件操作、网络自动化等丰富功能。'
+                    },
+                    multiAgent: {
+                        title: '多Agent并行工作',
+                        desc: '同时启动多个AI助手，并行处理不同任务，效率提升3-5倍。就像有个专业团队。'
+                    },
+                    mobile: {
+                        title: '微信/飞书联动',
+                        desc: '不在电脑旁？通过微信、飞书远程控制，一句话就能让电脑干活，随时随地上线。'
+                    },
+                    automation: {
+                        title: '零代码自动化',
+                        desc: '用自然语言搭建自动化工作流，重复性工作自动完成。定时任务、条件触发，解放双手。'
+                    }
+                },
+                demo: {
+                    title: '真实使用演示',
+                    subtitle: '看看WorkBuddy如何帮你完成日常任务',
+                    fileSort: '文件智能整理',
+                    dataAnalysis: '数据分析报告',
+                    remoteControl: '远程办公控制'
+                },
+                comparison: {
+                    title: '与其他产品对比',
+                    subtitle: '为什么WorkBuddy更适合普通人使用？'
+                },
+                faq: {
+                    title: '常见问题',
+                    subtitle: '关于WorkBuddy的常见疑问解答'
+                },
+                contact: {
+                    title: '联系我们',
+                    subtitle: '有问题？随时联系我们',
+                    name: '姓名',
+                    email: '邮箱',
+                    subject: '主题',
+                    message: '消息',
+                    send: '发送消息',
+                    success: '✅ 消息发送成功！我们会尽快回复您。'
+                },
+                cta: {
+                    title: '准备好让你的AI同事帮你上班了吗？',
+                    subtitle: '免费下载，5分钟快速上手，从此解放双手，效率翻倍！',
+                    download: '🚀 免费下载',
+                    watch: '📺 观看B站演示视频',
+                    gift: '🎁 立即下载，前10000名用户送30天高级功能体验'
+                },
+                footer: {
+                    tagline: '腾讯出品，更懂中国人的AI助手',
+                    product: '产品',
+                    support: '支持',
+                    follow: '关注我们',
+                    features: '功能介绍',
+                    tutorial: '使用教程',
+                    api: 'API文档',
+                    updates: '更新日志',
+                    help: '帮助中心',
+                    video: '视频教程',
+                    community: '社区论坛',
+                    feedback: '反馈建议',
+                    privacy: '隐私政策',
+                    terms: '服务条款',
+                    icp: '备案信息',
+                    copyright: '© 2026 WorkBuddy. All rights reserved. 腾讯云出品'
+                }
+            },
+            en: {
+                nav: {
+                    features: 'Features',
+                    demo: 'Demo',
+                    comparison: 'Comparison',
+                    faq: 'FAQ',
+                    contact: 'Contact',
+                    experience: 'Try Now'
+                },
+                hero: {
+                    badge: '🚀 Powered by Tencent - Made for Everyone',
+                    title: 'Send a Message',
+                    subtitle: 'Let AI Do the Work!',
+                    description: 'No coding? No problem! No complex setup, no technical background required.<br>Natural language commands to free your hands and let AI work for you.',
+                    download: 'Free Download',
+                    watch: 'Watch Demo',
+                    followers: 'Followers',
+                    likes: 'Likes',
+                    demoTip: 'Real demo, completes tasks in just 3 seconds'
+                },
+                features: {
+                    title: 'Why Choose WorkBuddy?',
+                    subtitle: 'More than a chat tool - your digital colleague that really gets work done!',
+                    natural: {
+                        title: 'Natural Language Driven',
+                        desc: 'No need to learn commands or code. Just talk to AI like you would to a person, and it will execute automatically.'
+                    },
+                    security: {
+                        title: 'Local Execution, Data Secure',
+                        desc: 'All tasks execute on your local computer, no data leaves your device. No cloud upload, privacy guaranteed.'
+                    },
+                    ecosystem: {
+                        title: 'OpenClaw Ecosystem Compatible',
+                        desc: 'Fully compatible with OpenClaw skill ecosystem, supporting desktop control, file operations, web automation and more.'
+                    },
+                    multiAgent: {
+                        title: 'Multi-Agent Parallel Work',
+                        desc: 'Launch multiple AI assistants simultaneously to process different tasks in parallel, 3-5x efficiency boost. Like having a pro team.'
+                    },
+                    mobile: {
+                        title: 'WeChat/Feishu Integration',
+                        desc: 'Not at your computer? Remote control via WeChat or Feishu with a single message. Work from anywhere.'
+                    },
+                    automation: {
+                        title: 'Zero-Code Automation',
+                        desc: 'Build automation workflows with natural language. Repetitive tasks completed automatically. Scheduled tasks, triggers, hands-free.'
+                    }
+                },
+                demo: {
+                    title: 'Real Usage Demo',
+                    subtitle: 'See how WorkBuddy helps you complete daily tasks',
+                    fileSort: 'Smart File Organization',
+                    dataAnalysis: 'Data Analysis Reports',
+                    remoteControl: 'Remote Work Control'
+                },
+                comparison: {
+                    title: 'Comparison with Other Products',
+                    subtitle: 'Why is WorkBuddy more suitable for everyday users?'
+                },
+                faq: {
+                    title: 'FAQ',
+                    subtitle: 'Answers to common questions about WorkBuddy'
+                },
+                contact: {
+                    title: 'Contact Us',
+                    subtitle: 'Have questions? Contact us anytime',
+                    name: 'Name',
+                    email: 'Email',
+                    subject: 'Subject',
+                    message: 'Message',
+                    send: 'Send Message',
+                    success: '✅ Message sent successfully! We will reply as soon as possible.'
+                },
+                cta: {
+                    title: 'Ready to Let Your AI Colleague Work for You?',
+                    subtitle: 'Free download, 5 minutes to get started. Free your hands, double your efficiency!',
+                    download: '🚀 Free Download',
+                    watch: '📺 Watch Demo Video',
+                    gift: '🎁 Download now, first 10,000 users get 30 days of premium features free'
+                },
+                footer: {
+                    tagline: 'Powered by Tencent - AI Assistant Made for You',
+                    product: 'Product',
+                    support: 'Support',
+                    follow: 'Follow Us',
+                    features: 'Features',
+                    tutorial: 'Tutorial',
+                    api: 'API Docs',
+                    updates: 'Changelog',
+                    help: 'Help Center',
+                    video: 'Video Tutorial',
+                    community: 'Community',
+                    feedback: 'Feedback',
+                    privacy: 'Privacy Policy',
+                    terms: 'Terms of Service',
+                    icp: 'ICP',
+                    copyright: '© 2026 WorkBuddy. All rights reserved. Tencent Cloud'
+                }
+            }
+        };
+
+        let currentLanguage = 'zh';
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang];
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            
+            // Update current lang indicator
+            document.getElementById('current-lang').textContent = lang === 'zh' ? '中文' : 'English';
+            
+            // Update navigation
+            document.querySelectorAll('a[href="#features"]').forEach(el => el.textContent = t.nav.features);
+            document.querySelectorAll('a[href="#demo"]').forEach(el => el.textContent = t.nav.demo);
+            document.querySelectorAll('a[href="#comparison"]').forEach(el => el.textContent = t.nav.comparison);
+            document.querySelectorAll('a[href="#faq"]').forEach(el => el.textContent = t.nav.faq);
+            document.querySelectorAll('a[href="#contact"]').forEach(el => el.textContent = t.nav.contact);
+            document.querySelectorAll('nav button').forEach(el => {
+                if (el.textContent.includes('立即') || el.textContent.includes('Try')) {
+                    el.textContent = t.nav.experience;
+                }
+            });
+            
+            // Update hero section
+            document.querySelector('#hero .inline-block').innerHTML = t.hero.badge;
+            document.querySelector('#hero h1').innerHTML = `${t.hero.title}<br><span class="gradient-text">${t.hero.subtitle}</span>`;
+            document.querySelector('#hero .text-xl').innerHTML = t.hero.description;
+            document.querySelectorAll('#hero button').forEach(btn => {
+                if (btn.textContent.includes('免费') || btn.textContent.includes('Free')) {
+                    btn.textContent = t.hero.download;
+                }
+                if (btn.textContent.includes('观看') || btn.textContent.includes('Watch')) {
+                    btn.textContent = t.hero.watch;
+                }
+            });
+            
+            // Update contact form
+            const nameLabel = document.querySelector('label[for="name"]');
+            const emailLabel = document.querySelector('label[for="email"]');
+            const subjectLabel = document.querySelector('label[for="subject"]');
+            const messageLabel = document.querySelector('label[for="message"]');
+            const sendButton = document.querySelector('#contact-form button[type="submit"]');
+            
+            if (nameLabel) nameLabel.textContent = t.contact.name;
+            if (emailLabel) emailLabel.textContent = t.contact.email;
+            if (subjectLabel) subjectLabel.textContent = t.contact.subject;
+            if (messageLabel) messageLabel.textContent = t.contact.message;
+            if (sendButton) sendButton.textContent = t.contact.send;
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== 'zh') {
+                setLanguage(savedLang);
+            }
+        });
+    </script>
+
+    <script>
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = formatNumber(Math.floor(current));
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = formatNumber(target);
+                        }
+                    };
+
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        function formatNumber(num) {
+            if (num >= 10000) {
+                return (num / 10000).toFixed(1) + '万+';
+            }
+            return num + '+';
+        }
+
+        // Particle background
+        function createParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
         // Navbar scroll effect
+        let lastScroll = 0;
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-gray-900/95');
+            const currentScroll = window.scrollY;
+
+            if (currentScroll > 50) {
+                nav.classList.add('bg-gray-900/95', 'shadow-lg');
+                nav.style.transform = 'translateY(0)';
             } else {
-                nav.classList.remove('bg-gray-900/95');
+                nav.classList.remove('bg-gray-900/95', 'shadow-lg');
             }
+
+            // Hide/show navbar on scroll
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+
+            lastScroll = currentScroll;
         });
 
-        // Animate on scroll
+        // Animate on scroll with stagger effect
+        const animateElements = document.querySelectorAll('.feature-card, #demo > div > div > div > div');
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    // Add staggered delay
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s, transform 0.6s';
-            observer.observe(card);
+        animateElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Typing effect for demo messages
+        const typingElements = document.querySelectorAll('.typing-cursor');
+        typingElements.forEach(el => {
+            const text = el.textContent;
+            el.textContent = '';
+            let i = 0;
+
+            const typeWriter = () => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+
+            // Start typing when element is in view
+            const typeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && el.textContent === '') {
+                        typeWriter();
+                        typeObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            typeObserver.observe(el);
+        });
+
+        // Button ripple effect
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple-effect 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+                this.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-effect {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // FAQ accordion with smooth animation
+        document.querySelectorAll('.faq-item').forEach(faq => {
+            faq.querySelector('h3').addEventListener('click', function() {
+                const answer = faq.querySelector('.faq-answer');
+                const icon = faq.querySelector('.faq-icon');
+                const isOpen = answer.style.display === 'block';
+
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(otherFaq => {
+                    if (otherFaq !== faq) {
+                        otherFaq.querySelector('.faq-answer').style.display = 'none';
+                        otherFaq.querySelector('.faq-icon').textContent = '+';
+                        otherFaq.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Toggle current FAQ
+                if (isOpen) {
+                    answer.style.display = 'none';
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    answer.style.display = 'block';
+                    answer.style.animation = 'fadeInUp 0.3s ease-out';
+                    icon.textContent = '−';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('#hero');
+            if (hero) {
+                const scrolled = window.scrollY;
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
         });
     </script>
 </body>
