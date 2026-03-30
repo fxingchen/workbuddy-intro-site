@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkBuddy - 更适合普通人的国产AI桌面助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                        <span class="text-xl font-bold">W</span>
+                    </div>
+                    <span class="text-xl font-bold">WorkBuddy</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="hover:text-purple-400 transition">核心功能</a>
+                    <a href="#demo" class="hover:text-purple-400 transition">使用演示</a>
+                    <a href="#comparison" class="hover:text-purple-400 transition">产品对比</a>
+                    <a href="#faq" class="hover:text-purple-400 transition">常见问题</a>
+                </div>
+                <button class="gradient-bg px-6 py-2 rounded-full font-medium hover:opacity-90 transition">
+                    立即体验
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg min-h-screen flex items-center justify-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-4">
+                        🚀 腾讯推出，更适合普通人的国产AI
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+                        微信一句话<br>
+                        <span class="text-transparent bg-clip-text gradient-bg">就能真干活！</span>
+                    </h1>
+                    <p class="text-xl text-gray-200 mb-8 leading-relaxed">
+                        不懂编程？没关系！不需要复杂配置，无需技术背景。<br>
+                        自然语言指令，解放双手，让AI替你上班。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="gradient-bg px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition pulse-glow">
+                            免费下载
+                        </button>
+                        <button class="bg-white/10 backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition">
+                            观看演示
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-6 pt-6">
+                        <div class="flex items-center">
+                            <span class="text-3xl font-bold text-yellow-400">37.3万+</span>
+                            <span class="ml-2 text-gray-300">粉丝关注</span>
+                        </div>
+                        <div class="w-px h-8 bg-white/20"></div>
+                        <div class="flex items-center">
+                            <span class="text-3xl font-bold text-green-400">1690+</span>
+                            <span class="ml-2 text-gray-300">播放点赞</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative float-animation">
+                    <div class="glass-effect rounded-3xl p-8 space-y-6">
+                        <div class="bg-black/30 rounded-xl p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                                    <span class="text-2xl">💬</span>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-400">你发送的消息</div>
+                                    <div class="typing-cursor">帮我把E盘3月的所有PDF文档按类型分类</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                                    <span class="text-2xl">🤖</span>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-400">AI自动执行</div>
+                                    <div class="text-green-400">✅ 已找到327个文件，正在分类归档...</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 flex items-center justify-center">
+                                    <span class="text-2xl">📁</span>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-400">任务完成</div>
+                                    <div class="text-green-400">✅ 已创建12个分类文件夹，327个文件归档完成！</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center text-gray-400 text-sm mt-4">
+                            真实使用演示，仅需3秒完成任务
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">为什么选择 WorkBuddy？</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    不止是聊天工具，而是你的数字同事，真正能替你干活！
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6">
+                        <span class="text-4xl">💬</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">自然语言驱动</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        不需要学习命令，不需要编程。就像和人聊天一样，用日常语言告诉AI你想做什么，它就自动执行。
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
+                        <span class="text-4xl">🖥️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">本地执行，数据安全</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        所有任务在本地电脑执行，数据不出境。无需上传云端，隐私安全有保障。
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-6">
+                        <span class="text-4xl">🔌</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">OpenClaw生态兼容</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        完全兼容OpenClaw技能生态，支持桌面控制、文件操作、网络自动化等丰富功能。
+                    </p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-6">
+                        <span class="text-4xl">📊</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">多Agent并行工作</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        同时启动多个AI助手，并行处理不同任务，效率提升3-5倍。就像有个专业团队。
+                    </p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center mb-6">
+                        <span class="text-4xl">📱</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">微信/飞书联动</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        不在电脑旁？通过微信、飞书远程控制，一句话就能让电脑干活，随时随地上线。
+                    </p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6">
+                        <span class="text-4xl">⚡</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">零代码自动化</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        用自然语言搭建自动化工作流，重复性工作自动完成。定时任务、条件触发，解放双手。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-6">真实使用演示</h2>
+                        <p class="text-xl text-gray-400 mb-8">
+                            看看WorkBuddy如何帮你完成日常任务
+                        </p>
+                    </div>
+                    <div class="space-y-6">
+                        <!-- Demo 1 -->
+                        <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-xl">1</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-xl font-bold mb-2">文件智能整理</h4>
+                                    <p class="text-gray-400 mb-3">你的指令：</p>
+                                    <div class="bg-black/30 rounded-lg p-4 font-mono text-sm">
+                                        "帮我把桌面文件夹里超过3个月没打开的文件，按类型分类归档到D盘"
+                                    </div>
+                                    <div class="flex items-center mt-3 text-green-400">
+                                        <span>✅ 30秒内完成：清理456个文件，创建18个分类文件夹</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Demo 2 -->
+                        <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-xl">2</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-xl font-bold mb-2">数据分析报告</h4>
+                                    <p class="text-gray-400 mb-3">你的指令：</p>
+                                    <div class="bg-black/30 rounded-lg p-4 font-mono text-sm">
+                                        "分析2026年Q1销售数据，生成带图表的可视化报告，重点标出增长趋势"
+                                    </div>
+                                    <div class="flex items-center mt-3 text-green-400">
+                                        <span>✅ 1分钟内完成：生成4页报告，包含5个图表和3个关键洞察</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Demo 3 -->
+                        <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-xl">3</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-xl font-bold mb-2">远程办公控制</h4>
+                                    <p class="text-gray-400 mb-3">你的指令（通过微信）：</p>
+                                    <div class="bg-black/30 rounded-lg p-4 font-mono text-sm">
+                                        "把今天的会议纪要文件整理好，发到企业微信"
+                                    </div>
+                                    <div class="flex items-center mt-3 text-green-400">
+                                        <span>✅ 自动执行：完成整理、格式优化、文件发送</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="glass-effect rounded-3xl p-8">
+                        <div class="bg-black/30 rounded-2xl p-6">
+                            <div class="space-y-6">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">📁</span>
+                                    <div>
+                                        <div class="text-sm text-gray-400">正在扫描</div>
+                                        <div>E:\Documents\Work\</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">📊</span>
+                                    <div>
+                                        <div class="text-sm text-gray-400">发现文件</div>
+                                        <div class="text-green-400">1,289个文档，总计2.3GB</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">⚙️</span>
+                                    <div>
+                                        <div class="text-sm text-gray-400">智能分类</div>
+                                        <div>按类型、日期、优先级自动归档</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-2xl">✅</span>
+                                    <div>
+                                        <div class="text-sm text-gray-400">归档完成</div>
+                                        <div class="text-green-400 font-bold">创建15个文件夹，所有文件已归档</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-6">
+                                <div class="inline-block bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm">
+                                    实时执行中...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="py-24 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">与其他产品对比</h2>
+                <p class="text-xl text-gray-400">
+                    为什么WorkBuddy更适合普通人使用？
+                </p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-gray-900 rounded-2xl overflow-hidden">
+                    <thead>
+                        <tr class="gradient-bg">
+                            <th class="px-8 py-5 text-left">功能特性</th>
+                            <th class="px-8 py-5 text-center">ChatGPT</th>
+                            <th class="px-8 py-5 text-center">OpenClaw</th>
+                            <th class="px-8 py-5 text-center text-yellow-400 font-bold">WorkBuddy</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr>
+                            <td class="px-8 py-5">自然语言操作</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-green-400">✓✓✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-5">桌面自动化</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✗</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-green-400">✓✓✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-5">本地执行</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✗</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-green-400">✓✓✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-5">微信/飞书联动</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✗</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-green-400">✓✓✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-5">多Agent并行</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✗</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-green-400">✓✓✓</td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-5">学习成本</td>
+                            <td class="px-8 py-5 text-center">低</td>
+                            <td class="px-8 py-5 text-center">高</td>
+                            <td class="px-8 py-5 text-center text-green-400 font-bold">极低</td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-5">国产服务</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✗</td>
+                            <td class="px-8 py-5 text-center text-gray-400">✓</td>
+                            <td class="px-8 py-5 text-center text-green-400 font-bold">✓✓✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">常见问题</h2>
+                <p class="text-xl text-gray-400">
+                    关于WorkBuddy的常见疑问解答
+                </p>
+            </div>
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-bold mb-3">Q: WorkBuddy需要技术背景吗？</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        完全不需要！WorkBuddy专为普通人设计，零编程、零配置、零学习成本。就像和同事聊天一样，用日常语言告诉它你想做什么就行。
+                    </p>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-bold mb-3">Q: 数据安全吗？会上传到云端吗？</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        非常安全！所有任务都在你的本地电脑执行，数据不会出境。WorkBuddy只是帮你操作电脑，不会保存或上传你的文件到云端。
+                    </p>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-bold mb-3">Q: 免费吗？有什么付费计划？</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        WorkBuddy提供免费版本，满足日常办公需求。专业版本提供更多功能（如更多并行Agent、高级自动化、企业级支持），具体价格请查看官方定价页面。
+                    </p>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-bold mb-3">Q: 支持哪些操作系统？</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        目前支持Windows系统，Mac和Linux版本正在开发中。需要Node.js、Git和.NET等基础环境，首次使用时会有安装指引。
+                    </p>
+                </div>
+                <!-- FAQ 5 -->
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-xl font-bold mb-3">Q: 能做什么任务？</h3>
+                    <p class="text-gray-300 leading-relaxed leading-relaxed">
+                        几乎所有桌面操作！包括但不限于：文件整理、数据录入、报告生成、邮件发送、软件操作、定时任务、远程控制、内容创作、PPT制作、表格处理等等。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg py-24">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                准备好让你的AI同事帮你上班了吗？
+            </h2>
+            <p class="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
+                免费下载，5分钟快速上手，从此解放双手，效率翻倍！
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-purple-600 px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition">
+                    🚀 免费下载
+                </button>
+                <button class="bg-white/20 backdrop-blur-sm border-2 border-white/40 px-10 py-4 rounded-full text-lg font-bold hover:bg-white/30 transition">
+                    📺 观看B站演示视频
+                </button>
+            </div>
+            <p class="text-white/70 text-sm mt-6">
+                🎁 立即下载，前10000名用户送30天高级功能体验
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                            <span class="text-xl font-bold">W</span>
+                        </div>
+                        <span class="text-xl font-bold">WorkBuddy</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        腾讯出品，更懂中国人的AI助手
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">产品</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">功能介绍</a></li>
+                        <li><a href="#" class="hover:text-white transition">使用教程</a></li>
+                        <li><a href="#" class="hover:text-white transition">API文档</a></li>
+                        <li><a href="#" class="hover:text-white transition">更新日志</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">支持</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">帮助中心</a></li>
+                        <li><a href="#" class="hover:text-white transition">视频教程</a></li>
+                        <li><a href="#" class="hover:text-white transition">社区论坛</a></li>
+                        <li><a href="#" class="hover:text-white transition">反馈建议</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">关注我们</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://space.bilibili.com/1619549806" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                            <span>📺</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                            <span>💬</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                            <span>📱</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition">
+                            <span>🐦</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    © 2026 WorkBuddy. All rights reserved. 腾讯云出品
+                </p>
+                <div class="flex space-x-6 text-gray-400 text-sm">
+                    <a href="#" class="hover:text-white transition">隐私政策</a>
+                    <a href="#" class="hover:text-white transition">服务条款</a>
+                    <a href="#" class="hover:text-white transition">备案信息</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-gray-900/95');
+            } else {
+                nav.classList.remove('bg-gray-900/95');
+            }
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
