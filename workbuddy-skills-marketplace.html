@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkBuddy技能市场 - 发现强大的AI自动化技能</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg,
+                #667eea 0%,
+                #764ba2 25%,
+                #f093fb 50%,
+                #f5576c 75%,
+                #4facfe 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 0 32px rgba(255, 255, 255, 0.1);
+        }
+        .skill-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0));
+            transition: opacity 0.3s;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .skill-card:hover::after {
+            opacity: 1;
+        }
+        .sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-100%);
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .search-input:focus {
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 0 20px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        .category-item {
+            transition: all 0.3s ease;
+        }
+        .category-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+        .category-item.active {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.3), transparent);
+            border-left: 4px solid #667eea;
+        }
+        .install-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .stats-card {
+            animation: staggerEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes staggerEnter {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tag {
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) {
+            .desktop-sidebar {
+                display: none;
+            }
+            .mobile-sidebar {
+                position: fixed;
+                inset: 0;
+                background: rgba(17, 24, 39, 0.98);
+                backdrop-filter: blur(20px);
+                z-index: 40;
+                transform: translateX(-100%);
+            }
+            .mobile-sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <button id="sidebar-toggle" class="text-2xl hover:text-purple-400 transition md:hidden">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+                        <span class="text-xl font-bold">W</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">WorkBuddy</h1>
+                        <p class="text-xs text-gray-400">技能市场</p>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="flex-1 max-w-2xl mx-8">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="search-input" 
+                               class="search-input w-full bg-gray-800 border border-gray-700 rounded-full pl-12 pr-4 py-2 text-white placeholder-gray-500 focus:outline-none transition-all"
+                               placeholder="搜索技能、分类、标签...">
+                    </div>
+                </div>
+
+                <!-- User & Stats -->
+                <div class="flex items-center space-x-6">
+                    <div class="hidden lg:flex items-center space-x-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-lg font-bold gradient-text" id="total-skills">128</div>
+                            <div class="text-gray-400">技能</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-green-400" id="total-installs">10.2k</div>
+                            <div class="text-gray-400">安装</div>
+                        </div>
+                    </div>
+                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center cursor-pointer hover:scale-110 transition">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex pt-20">
+        <!-- Desktop Sidebar -->
+        <aside class="desktop-sidebar fixed left-0 top-20 bottom-0 w-64 bg-gray-800 border-r border-gray-700 overflow-y-auto">
+            <div class="p-6">
+                <!-- Categories -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">分类</h3>
+                    <div class="space-y-2" id="categories">
+                        <div class="category-item active cursor-pointer p-3 rounded-lg" data-category="all">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-th text-purple-400"></i>
+                                    <span>全部技能</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">128</span>
+                            </div>
+                        </div>
+                        <div class="category-item cursor-pointer p-3 rounded-lg" data-category="file-management">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-folder text-blue-400"></i>
+                                    <span>文件管理</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">24</span>
+                            </div>
+                        </div>
+                        <div class="category-item cursor-pointer p-3 rounded-lg" data-category="data-analysis">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-chart-bar text-green-400"></i>
+                                    <span>数据分析</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">18</span>
+                            </div>
+                        </div>
+                        <div class="category-item cursor-pointer p-3 rounded-lg" data-category="office-automation">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-briefcase text-orange-400"></i>
+                                    <span>办公自动化</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">32</span>
+                            </div>
+                        </div>
+                        <div class="category-item cursor-pointer p-3 rounded-lg" data-category="development">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-code text-cyan-400"></i>
+                                    <span>开发工具</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">28</span>
+                            </div>
+                        </div>
+                        <div class="category-item cursor-pointer p-3 rounded-lg" data-category="social-media">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-share-alt text-pink-400"></i>
+                                    <span>社交媒体</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">16</span>
+                            </div>
+                        </div>
+                        <div class="category-item cursor-pointer p-3 rounded-lg" data-category="system-tools">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-cog text-gray-400"></i>
+                                    <span>系统工具</span>
+                                </div>
+                                <span class="text-xs bg-gray-700 px-2 py-1 rounded-full">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Tags -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">热门标签</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag cursor-pointer px-3 py-1 bg-gray-700 rounded-full text-xs hover:bg-purple-600">微信</span>
+                        <span class="tag cursor-pointer px-3 py-1 bg-gray-700 rounded-full text-xs hover:bg-purple-600">自动化</span>
+                        <span class="tag cursor-pointer px-3 py-1 bg-gray-700 rounded-full text-xs hover:bg-purple-600">AI</span>
+                        <span class="tag cursor-pointer px-3 py-1 bg-gray-700 rounded-full text-xs hover:bg-purple-600">效率</span>
+                        <span class="tag cursor-pointer px-3 py-1 bg-gray-700 rounded-full text-xs hover:bg-purple-600">OpenClaw</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar -->
+        <div id="mobile-sidebar" class="mobile-sidebar fixed inset-0 z-40">
+            <div class="w-64 h-full bg-gray-800 border-r border-gray-700">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold">导航</h2>
+                        <button id="close-sidebar" class="text-2xl hover:text-purple-400">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- 移动端导航内容 -->
+                    <div class="space-y-2" id="mobile-categories">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 ml-64 p-6">
+            <!-- Hero Section -->
+            <section class="mb-8 fade-in-up">
+                <div class="glass-effect rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold mb-4 gradient-text">发现WorkBuddy的强大技能</h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        超过128个精心设计的自动化技能，涵盖文件管理、数据分析、办公自动化等多个领域。
+                        一键安装，立即提升工作效率。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="install-btn gradient-bg px-6 py-3 rounded-full font-semibold">
+                            <i class="fas fa-rocket mr-2"></i>探索热门技能
+                        </button>
+                        <button class="install-btn bg-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-600">
+                            <i class="fas fa-plus mr-2"></i>提交你的技能
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sort & Filter -->
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-400">排序：</span>
+                    <select id="sort-select" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500">
+                        <option value="popular">最受欢迎</option>
+                        <option value="newest">最新发布</option>
+                        <option value="rating">评分最高</option>
+                        <option value="installs">安装最多</option>
+                    </select>
+                </div>
+                <div class="text-gray-400">
+                    共 <span id="result-count">128</span> 个技能
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Skills will be dynamically generated -->
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="install-btn bg-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-600">
+                    <i class="fas fa-spinner mr-2"></i>加载更多
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Skill data
+        const skillsData = [
+            {
+                id: 1,
+                name: "智能文件整理",
+                description: "自动按类型、日期、大小整理文件，支持自定义规则",
+                category: "file-management",
+                icon: "fas fa-folder-open",
+                iconColor: "text-blue-400",
+                tags: ["文件", "整理", "自动化"],
+                rating: 4.8,
+                installs: 2847,
+                author: "腾讯官方",
+                verified: true
+            },
+            {
+                id: 2,
+                name: "Excel数据清洗",
+                description: "一键清理重复数据、格式化表格、生成数据报告",
+                category: "data-analysis",
+                icon: "fas fa-table",
+                iconColor: "text-green-400",
+                tags: ["Excel", "数据", "清洗"],
+                rating: 4.6,
+                installs: 1923,
+                author: "DataMaster",
+                verified: false
+            },
+            {
+                id: 3,
+                name: "邮件自动回复",
+                description: "基于规则自动回复邮件，支持模板和智能分类",
+                category: "office-automation",
+                icon: "fas fa-envelope",
+                iconColor: "text-orange-400",
+                tags: ["邮件", "自动化", "办公"],
+                rating: 4.5,
+                installs: 1532,
+                author: "OfficeHelper",
+                verified: false
+            },
+            {
+                id: 4,
+                name: "代码格式化工具",
+                description: "支持多种编程语言的代码格式化和美化",
+                category: "development",
+                icon: "fas fa-code",
+                iconColor: "text-cyan-400",
+                tags: ["代码", "格式化", "开发"],
+                rating: 4.7,
+                installs: 3210,
+                author: "DevTools",
+                verified: true
+            },
+            {
+                id: 5,
+                name: "社交媒体发布",
+                description: "定时发布内容到多个社交平台，支持内容管理",
+                category: "social-media",
+                icon: "fas fa-share-alt",
+                iconColor: "text-pink-400",
+                tags: ["社交", "发布", "定时"],
+                rating: 4.4,
+                installs: 987,
+                author: "SocialPro",
+                verified: false
+            },
+            {
+                id: 6,
+                name: "系统清理优化",
+                description: "清理系统垃圾文件，优化启动项，提升性能",
+                category: "system-tools",
+                icon: "fas fa-broom",
+                iconColor: "text-gray-400",
+                tags: ["系统", "清理", "优化"],
+                rating: 4.3,
+                installs: 2156,
+                author: "SystemBoost",
+                verified: false
+            },
+            {
+                id: 7,
+                name: "PDF批量处理",
+                description: "批量合并、拆分、转换PDF文件，支持OCR识别",
+                category: "file-management",
+                icon: "fas fa-file-pdf",
+                iconColor: "text-red-400",
+                tags: ["PDF", "批量", "处理"],
+                rating: 4.6,
+                installs: 1789,
+                author: "PDFMaster",
+                verified: false
+            },
+            {
+                id: 8,
+                name: "数据可视化报告",
+                description: "自动生成数据可视化图表，导出PDF或PPT报告",
+                category: "data-analysis",
+                icon: "fas fa-chart-line",
+                iconColor: "text-purple-400",
+                tags: ["可视化", "报告", "图表"],
+                rating: 4.9,
+                installs: 2654,
+                author: "VizPro",
+                verified: true
+            },
+            {
+                id: 9,
+                name: "会议纪要生成",
+                description: "自动转录音频，提取要点，生成会议纪要",
+                category: "office-automation",
+                icon: "fas fa-microphone",
+                iconColor: "text-yellow-400",
+                tags: ["会议", "纪要", "语音"],
+                rating: 4.5,
+                installs: 1342,
+                author: "MeetingAI",
+                verified: false
+            },
+            {
+                id: 10,
+                name: "Git自动化提交",
+                description: "自动提交代码，生成提交信息，管理分支",
+                category: "development",
+                icon: "fas fa-code-branch",
+                iconColor: "text-indigo-400",
+                tags: ["Git", "提交", "自动化"],
+                rating: 4.4,
+                installs: 1987,
+                author: "GitHelper",
+                verified: false
+            },
+            {
+                id: 11,
+                name: "图片批量压缩",
+                description: "批量压缩图片，支持多种格式，保持高质量",
+                category: "file-management",
+                icon: "fas fa-image",
+                iconColor: "text-teal-400",
+                tags: ["图片", "压缩", "批量"],
+                rating: 4.3,
+                installs: 1543,
+                author: "ImagePro",
+                verified: false
+            },
+            {
+                id: 12,
+                name: "数据库备份",
+                description: "自动备份数据库，支持多种数据库类型",
+                category: "system-tools",
+                icon: "fas fa-database",
+                iconColor: "text-blue-500",
+                tags: ["数据库", "备份", "安全"],
+                rating: 4.7,
+                installs: 1123,
+                author: "DBBackup",
+                verified: false
+            }
+        ];
+
+        let filteredSkills = [...skillsData];
+        let currentPage = 1;
+        const skillsPerPage = 12;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSkills();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Search
+            document.getElementById('search-input').addEventListener('input', handleSearch);
+
+            // Category filter
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.addEventListener('click', handleCategoryFilter);
+            });
+
+            // Sort
+            document.getElementById('sort-select').addEventListener('change', handleSort);
+
+            // Load more
+            document.getElementById('load-more').addEventListener('click', handleLoadMore);
+
+            // Mobile sidebar
+            document.getElementById('sidebar-toggle').addEventListener('click', () => {
+                document.getElementById('mobile-sidebar').classList.add('open');
+            });
+
+            document.getElementById('close-sidebar').addEventListener('click', () => {
+                document.getElementById('mobile-sidebar').classList.remove('open');
+            });
+        }
+
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filteredSkills = skillsData.filter(skill => 
+                skill.name.toLowerCase().includes(searchTerm) ||
+                skill.description.toLowerCase().includes(searchTerm) ||
+                skill.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            currentPage = 1;
+            renderSkills();
+        }
+
+        function handleCategoryFilter(e) {
+            const category = e.currentTarget.dataset.category;
+            
+            // Update active state
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            e.currentTarget.classList.add('active');
+
+            // Filter skills
+            if (category === 'all') {
+                filteredSkills = [...skillsData];
+            } else {
+                filteredSkills = skillsData.filter(skill => skill.category === category);
+            }
+            currentPage = 1;
+            renderSkills();
+        }
+
+        function handleSort(e) {
+            const sortBy = e.target.value;
+            
+            switch(sortBy) {
+                case 'popular':
+                    filteredSkills.sort((a, b) => b.installs - a.installs);
+                    break;
+                case 'newest':
+                    filteredSkills.sort((a, b) => b.id - a.id);
+                    break;
+                case 'rating':
+                    filteredSkills.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'installs':
+                    filteredSkills.sort((a, b) => b.installs - a.installs);
+                    break;
+            }
+            
+            renderSkills();
+        }
+
+        function handleLoadMore() {
+            currentPage++;
+            renderSkills(true);
+        }
+
+        function renderSkills(append = false) {
+            const grid = document.getElementById('skills-grid');
+            const startIndex = (currentPage - 1) * skillsPerPage;
+            const endIndex = startIndex + skillsPerPage;
+            const skillsToShow = filteredSkills.slice(startIndex, endIndex);
+
+            if (!append) {
+                grid.innerHTML = '';
+                document.getElementById('result-count').textContent = filteredSkills.length;
+            }
+
+            skillsToShow.forEach((skill, index) => {
+                const skillCard = createSkillCard(skill, index);
+                grid.appendChild(skillCard);
+            });
+
+            // Update load more button
+            const loadMoreBtn = document.getElementById('load-more');
+            if (endIndex >= filteredSkills.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-flex';
+            }
+        }
+
+        function createSkillCard(skill, index) {
+            const card = document.createElement('div');
+            card.className = 'skill-card glass-effect rounded-2xl p-6 stats-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            const stars = '★'.repeat(Math.floor(skill.rating)) + '☆'.repeat(5 - Math.floor(skill.rating));
+            
+            card.innerHTML = `
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center">
+                        <i class="${skill.icon} ${skill.iconColor} text-xl"></i>
+                    </div>
+                    ${skill.verified ? '<div class="text-blue-400 text-sm"><i class="fas fa-check-circle"></i> 认证</div>' : ''}
+                </div>
+                
+                <h3 class="text-lg font-bold mb-2">${skill.name}</h3>
+                <p class="text-gray-300 text-sm mb-4 leading-relaxed">${skill.description}</p>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+                    ${skill.tags.map(tag => `<span class="tag px-2 py-1 bg-gray-700 rounded-full text-xs">${tag}</span>`).join('')}
+                </div>
+                
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-yellow-400 text-sm">${stars}</span>
+                        <span class="text-gray-400 text-sm">${skill.rating}</span>
+                    </div>
+                    <div class="text-gray-400 text-sm">
+                        <i class="fas fa-download mr-1"></i>${formatNumber(skill.installs)}
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-gray-500 text-sm">
+                        作者: ${skill.author}
+                    </div>
+                    <button class="install-btn gradient-bg px-4 py-2 rounded-full text-sm font-semibold" onclick="installSkill(${skill.id})">
+                        <i class="fas fa-plus mr-1"></i>安装
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
+            }
+            return num;
+        }
+
+        function installSkill(skillId) {
+            const skill = skillsData.find(s => s.id === skillId);
+            if (skill) {
+                // 显示安装成功消息
+                showToast(`正在安装 ${skill.name}...`);
+                
+                // 模拟安装过程
+                setTimeout(() => {
+                    showToast(`✅ ${skill.name} 安装成功！`, 'success');
+                    skill.installs++;
+                    renderSkills();
+                }, 1500);
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 right-6 glass-effect rounded-lg px-6 py-3 z-50 fade-in-up ${type === 'success' ? 'text-green-400' : ''}`;
+            toast.innerHTML = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
