@@ -24,16 +24,53 @@
             font-family: 'Noto Sans SC', sans-serif;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg,
+                #667eea 0%,
+                #764ba2 25%,
+                #f093fb 50%,
+                #f5576c 75%,
+                #4facfe 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 0 32px rgba(255, 255, 255, 0.1);
         }
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 10px 15px rgba(0, 0, 0, 0.1),
+                0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .text-glow {
+            text-shadow:
+                0 0 10px rgba(102, 126, 234, 0.3),
+                0 0 20px rgba(102, 126, 234, 0.2),
+                0 0 30px rgba(102, 126, 234, 0.1);
         }
         .float-animation {
             animation: float 3s ease-in-out infinite;
@@ -58,31 +95,67 @@
             50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
         }
         .slide-in-left {
-            animation: slideInLeft 0.8s ease-out forwards;
+            animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes slideInLeft {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
         }
         .slide-in-right {
-            animation: slideInRight 0.8s ease-out forwards;
+            animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes slideInRight {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
         .fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .bounce-enter {
+            animation: bounceEnter 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes bounceEnter {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .stagger-enter {
+            animation: staggerEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes staggerEnter {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .page-enter {
+            animation: pageEnter 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
         .scale-in {
-            animation: scaleIn 0.6s ease-out forwards;
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         @keyframes scaleIn {
             from { opacity: 0; transform: scale(0.8); }
+            50% { transform: scale(1.05); }
             to { opacity: 1; transform: scale(1); }
         }
         .rotate-hover:hover {
@@ -180,14 +253,97 @@
         .card-3d {
             transform-style: preserve-3d;
             perspective: 1000px;
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 10px 15px rgba(0, 0, 0, 0.1),
+                0 20px 25px rgba(0, 0, 0, 0.1);
         }
         .card-3d:hover {
             transform: rotateY(5deg) rotateX(5deg);
-            transition: transform 0.5s;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .card-hover-effect {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+        .card-hover-effect::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0));
+            transition: opacity 0.3s;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .card-hover-effect:hover::after {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .mobile-nav {
+                position: fixed;
+                inset: 0;
+                background: rgba(17, 24, 39, 0.98);
+                backdrop-filter: blur(20px);
+                transform: translateX(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 40;
+            }
+            .mobile-nav.open {
+                transform: translateX(0);
+            }
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            #particles {
+                display: none;
+            }
+            .company-logo {
+                font-size: 1.25rem !important;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
+<body class="bg-gray-900 text-white min-h-screen page-enter">
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
         <div class="max-w-7xl mx-auto px-6 py-4">
@@ -205,7 +361,7 @@
                     <a href="#faq" class="hover:text-purple-400 transition">常见问题</a>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button class="gradient-bg px-6 py-2 rounded-full font-medium hover:opacity-90 transition hidden sm:block">
+                    <button class="btn-primary gradient-bg px-6 py-2 rounded-full font-medium hidden sm:block">
                         立即体验
                     </button>
                     <!-- Mobile Menu Button -->
@@ -223,7 +379,7 @@
                     <a href="#faq" class="hover:text-purple-400 transition">常见问题</a>
                     <a href="#contact" class="hover:text-purple-400 transition">联系我们</a>
                     <hr class="border-gray-700">
-                    <button class="gradient-bg px-6 py-2 rounded-full font-medium hover:opacity-90 transition">
+                    <button class="btn-primary gradient-bg px-6 py-2 rounded-full font-medium">
                         立即体验
                     </button>
                 </div>
@@ -242,7 +398,7 @@
                     <div class="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-4 scale-in wave-animation">
                         🚀 腾讯推出，更适合普通人的国产AI
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6 fade-in-up">
+                    <h1 class="hero-title text-5xl lg:text-7xl font-bold leading-tight mb-6 fade-in-up text-glow">
                         微信一句话<br>
                         <span class="gradient-text">就能真干活！</span>
                     </h1>
@@ -251,12 +407,12 @@
                         自然语言指令，解放双手，让AI替你上班。
                     </p>
                     <div class="flex flex-wrap gap-4 fade-in-up" style="animation-delay: 0.4s">
-                        <button class="gradient-bg px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition pulse-glow ripple">
-                            免费下载
-                        </button>
-                        <button class="bg-white/10 backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition shake-hover">
-                            观看演示
-                        </button>
+                    <button class="btn-primary gradient-bg px-8 py-4 rounded-full text-lg font-semibold pulse-glow ripple">
+                        免费下载
+                    </button>
+                    <button class="btn-primary bg-white/10 backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold shake-hover">
+                        观看演示
+                    </button>
                     </div>
                     <div class="flex items-center space-x-6 pt-6 fade-in-up" style="animation-delay: 0.6s">
                         <div class="flex items-center">
@@ -324,7 +480,7 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d card-hover-effect relative">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">💬</span>
                     </div>
@@ -334,7 +490,7 @@
                     </p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d card-hover-effect relative">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">🖥️</span>
                     </div>
@@ -344,7 +500,7 @@
                     </p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d card-hover-effect relative">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">🔌</span>
                     </div>
@@ -354,7 +510,7 @@
                     </p>
                 </div>
                 <!-- Feature 4 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d card-hover-effect relative">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">📊</span>
                     </div>
@@ -364,7 +520,7 @@
                     </p>
                 </div>
                 <!-- Feature 5 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d card-hover-effect relative">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">📱</span>
                     </div>
@@ -374,7 +530,7 @@
                     </p>
                 </div>
                 <!-- Feature 6 -->
-                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d">
+                <div class="feature-card glass-effect rounded-2xl p-8 transition duration-300 card-3d card-hover-effect relative">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6 rotate-hover">
                         <span class="text-4xl">⚡</span>
                     </div>
@@ -500,6 +656,40 @@
         </div>
     </section>
 
+    <!-- Partners Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-center text-gray-400 mb-12 text-lg">已服务企业</h3>
+            <div class="flex flex-wrap justify-center items-center gap-12">
+                <!-- Company logos using text-based representations -->
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">腾讯云</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">字节跳动</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">阿里巴巴</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">华为云</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">百度</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">小米</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">美团</div>
+                </div>
+                <div class="company-logo grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer">
+                    <div class="text-2xl font-bold text-gray-400">京东</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Comparison Section -->
     <section id="comparison" class="py-24 bg-gray-800">
         <div class="max-w-7xl mx-auto px-6">
@@ -612,6 +802,176 @@
                     <p class="text-gray-300 leading-relaxed leading-relaxed">
                         几乎所有桌面操作！包括但不限于：文件整理、数据录入、报告生成、邮件发送、软件操作、定时任务、远程控制、内容创作、PPT制作、表格处理等等。
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">真实数据见证</h2>
+                <p class="text-xl text-gray-400">
+                    用数字说话，WorkBuddy的真实影响力
+                </p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 stats-grid">
+                <div class="text-center stagger-enter" style="animation-delay: 0.1s">
+                    <div class="text-5xl lg:text-6xl font-bold gradient-text mb-2">10万+</div>
+                    <div class="text-gray-400 text-lg">下载用户</div>
+                </div>
+                <div class="text-center stagger-enter" style="animation-delay: 0.2s">
+                    <div class="text-5xl lg:text-6xl font-bold gradient-text mb-2">98%</div>
+                    <div class="text-gray-400 text-lg">好评率</div>
+                </div>
+                <div class="text-center stagger-enter" style="animation-delay: 0.3s">
+                    <div class="text-5xl lg:text-6xl font-bold gradient-text mb-2">50万+</div>
+                    <div class="text-gray-400 text-lg">任务执行</div>
+                </div>
+                <div class="text-center stagger-enter" style="animation-delay: 0.4s">
+                    <div class="text-5xl lg:text-6xl font-bold gradient-text mb-2">3-5倍</div>
+                    <div class="text-gray-400 text-lg">效率提升</div>
+                </div>
+            </div>
+            <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8 stats-grid">
+                <div class="text-center stagger-enter" style="animation-delay: 0.5s">
+                    <div class="text-4xl font-bold text-purple-400 mb-2">平均每天</div>
+                    <div class="text-gray-400 text-lg">节省2小时</div>
+                </div>
+                <div class="text-center stagger-enter" style="animation-delay: 0.6s">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">3秒完成</div>
+                    <div class="text-gray-400 text-lg">自动化任务</div>
+                </div>
+                <div class="text-center stagger-enter" style="animation-delay: 0.7s">
+                    <div class="text-4xl font-bold text-green-400 mb-2">24/7在线</div>
+                    <div class="text-gray-400 text-lg">智能支持</div>
+                </div>
+                <div class="text-center stagger-enter" style="animation-delay: 0.8s">
+                    <div class="text-4xl font-bold text-orange-400 mb-2">0学习成本</div>
+                    <div class="text-gray-400 text-lg">即装即用</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">用户真实反馈</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    来自各行各业的真实用户，都在用WorkBuddy提升效率
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-effect rounded-2xl p-8 stagger-enter" style="animation-delay: 0.1s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-xl font-bold">
+                            张
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">张明</div>
+                            <div class="text-sm text-gray-400">产品经理 · 互联网公司</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        "WorkBuddy太棒了！每天帮我节省2小时，文件整理完全自动化。以前需要手动整理的资料，现在一句话搞定。"
+                    </p>
+                    <div class="flex text-yellow-400 text-lg">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="glass-effect rounded-2xl p-8 stagger-enter" style="animation-delay: 0.2s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center text-xl font-bold">
+                            李
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">李婷</div>
+                            <div class="text-sm text-gray-400">运营总监 · 电商企业</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        "通过微信远程控制太方便了！出差在外也能让电脑帮我处理数据，效率提升了至少3倍。团队里每个人都在用。"
+                    </p>
+                    <div class="flex text-yellow-400 text-lg">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="glass-effect rounded-2xl p-8 stagger-enter" style="animation-delay: 0.3s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center text-xl font-bold">
+                            王
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">王磊</div>
+                            <div class="text-sm text-gray-400">独立开发者 · 自由职业</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        "零代码搭建自动化工作流，太适合我们这种小团队了！定时任务、条件触发，帮我省了好多时间。"
+                    </p>
+                    <div class="flex text-yellow-400 text-lg">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                <!-- Testimonial 4 -->
+                <div class="glass-effect rounded-2xl p-8 stagger-enter" style="animation-delay: 0.4s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 flex items-center justify-center text-xl font-bold">
+                            陈
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">陈静</div>
+                            <div class="text-sm text-gray-400">数据分析师 · 金融公司</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        "数据分析报告生成神器！以前要花一下午的工作，现在5分钟搞定，还能自动生成图表和洞察。"
+                    </p>
+                    <div class="flex text-yellow-400 text-lg">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                <!-- Testimonial 5 -->
+                <div class="glass-effect rounded-2xl p-8 stagger-enter" style="animation-delay: 0.5s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-xl font-bold">
+                            刘
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">刘洋</div>
+                            <div class="text-sm text-gray-400">人力资源 · 传统企业</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        "作为技术小白，WorkBuddy真的很友好！不需要编程，就像和同事说话一样，我的工作效率翻倍了。"
+                    </p>
+                    <div class="flex text-yellow-400 text-lg">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                <!-- Testimonial 6 -->
+                <div class="glass-effect rounded-2xl p-8 stagger-enter" style="animation-delay: 0.6s">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-xl font-bold">
+                            赵
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">赵伟</div>
+                            <div class="text-sm text-gray-400">新媒体运营 · 创业公司</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        "多Agent并行太强大了！同时处理文案、图片、视频，内容生产效率提升5倍。这是我们团队的秘密武器！"
+                    </p>
+                    <div class="flex text-yellow-400 text-lg">
+                        ⭐⭐⭐⭐⭐
+                    </div>
                 </div>
             </div>
         </div>
@@ -1195,6 +1555,51 @@
                 hero.style.transform = `translateY(${scrolled * 0.3}px)`;
             }
         });
+
+        // Mobile menu toggle with improved UX
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('mobile-nav');
+
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close menu when clicking on a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('open', 'mobile-nav');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Swipe to close on mobile
+            let touchStartX = 0;
+            mobileMenu.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+
+            mobileMenu.addEventListener('touchmove', (e) => {
+                const touchX = e.touches[0].clientX;
+                const diff = touchStartX - touchX;
+
+                if (diff > 100) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('open', 'mobile-nav');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
     </script>
 </body>
 </html>

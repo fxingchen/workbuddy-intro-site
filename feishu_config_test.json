@@ -1,0 +1,10 @@
+{
+    "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/test-demo-only",
+    "notify_enabled": true,
+    "message_format": "post",
+    "notify_time": "13:47",
+    "notify_on_error": true,
+    "max_retries": 1,
+    "timeout_seconds": 5,
+    "project_name": "AI新闻自动化测试播报"
+}

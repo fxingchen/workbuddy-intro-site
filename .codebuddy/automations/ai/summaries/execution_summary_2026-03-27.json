@@ -1,0 +1,11 @@
+{
+  "execution_date": "2026-03-27",
+  "start_time": "2026-03-27T13:45:40.319668",
+  "end_time": "2026-03-27T13:45:40.319842",
+  "duration_seconds": 0.000174,
+  "report_path": "C:\\Users\\starry sky\\CodeBuddy\\Claw\\.codebuddy\\automations\\ai\\2026-03-27_ai_news.md",
+  "feishu_enabled": false,
+  "feishu_success": false,
+  "webhook_configured": false,
+  "config_file": "feishu_config.json"
+}

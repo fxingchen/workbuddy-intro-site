@@ -1,0 +1,28 @@
+{
+    "webhook_url": "请在这里粘贴你的飞书Webhook地址",
+    "notify_enabled": true,
+    "message_format": "post",
+    "notify_time": "立即补发",
+    "notify_on_error": true,
+    "max_retries": 3,
+    "timeout_seconds": 10,
+    "project_name": "AI新闻补发今日"
+}
+
+/*
+
+获取Webhook地址步骤：
+1. 飞书群组 → 右上角··· → 设置 → 群机器人 → 添加机器人
+2. 选择「Webhook」机器人 → 添加 → 命名 → 确认
+3. 复制显示的Webhook地址（格式如下）：
+   https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+配置方法：
+1. 复制上面的Webhook地址
+2. 替换「请在这里粘贴你的飞书Webhook地址」为你的实际地址
+3. 保存文件为 feishu_config.json
+4. 运行：python src/ai_news_automation_with_feishu.py
+
+或直接将地址提供给我，我帮你配置！
+
+*/

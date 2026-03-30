@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # WorkBuddy 介绍网站
 
 现代化的WorkBuddy产品介绍网站，包含丰富的动画效果、交互功能和多语言支持。
@@ -237,3 +238,6 @@ MIT License
 ---
 
 **Powered by 腾讯云** © 2026 WorkBuddy
+=======
+# workbuddy-intro-site
+>>>>>>> 3dd47222970bb28e0f82eeac39a8297ee19e1fd0

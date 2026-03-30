@@ -1,0 +1,10 @@
+{
+    "webhook_url": "",
+    "notify_enabled": true,
+    "message_format": "post",
+    "notify_time": "09:05",
+    "notify_on_error": true,
+    "max_retries": 3,
+    "timeout_seconds": 10,
+    "project_name": "AI新闻自动化测试"
+}
